@@ -9,6 +9,7 @@ import {
   Menu,
   RefreshCw,
 } from "lucide-react";
+import ReactMarkdown from "react-markdown";
 
 const ChatComponent = () => {
   const [messages, setMessages] = useState([
@@ -214,7 +215,7 @@ const ChatComponent = () => {
 
       {/* Main Content */}
       <div className="flex-1 flex overflow-hidden">
-        {/* Sidebar - Fixed on larger screens */}
+        {/* Sidebar */}
         <div className="hidden md:block w-80 bg-white border-r border-gray-200">
           <div className="p-6">
             <div className="mb-6">
@@ -258,7 +259,7 @@ const ChatComponent = () => {
 
         {/* Chat Area */}
         <div className="flex-1 flex flex-col">
-          {/* Messages Container */}
+          {/* Messages */}
           <div className="flex-1 overflow-y-auto p-4">
             <div className="max-w-4xl mx-auto space-y-6">
               {messages.map((message) => (
@@ -286,8 +287,16 @@ const ChatComponent = () => {
                           : "bg-white shadow-sm border border-gray-200"
                       }`}
                     >
-                      <div className="whitespace-pre-wrap text-sm leading-relaxed">
-                        {message.content}
+                      <div className="text-sm leading-relaxed prose prose-sm max-w-none">
+                        <ReactMarkdown
+                          components={{
+                            em: ({ node, ...props }) => (
+                              <span className="font-semibold" {...props} />
+                            ),
+                          }}
+                        >
+                          {message.content}
+                        </ReactMarkdown>
                       </div>
                     </div>
                     <div
@@ -315,8 +324,16 @@ const ChatComponent = () => {
                   </div>
                   <div className="flex-1 max-w-[85%]">
                     <div className="rounded-2xl px-4 py-3 bg-white shadow-sm border border-gray-200">
-                      <div className="whitespace-pre-wrap text-sm leading-relaxed">
-                        {streamingMessage}
+                      <div className="text-sm leading-relaxed prose prose-sm max-w-none">
+                        <ReactMarkdown
+                          components={{
+                            em: ({ node, ...props }) => (
+                              <span className="font-semibold" {...props} />
+                            ),
+                          }}
+                        >
+                          {streamingMessage}
+                        </ReactMarkdown>
                         <span className="animate-pulse text-blue-500 ml-1">
                           ▌
                         </span>
@@ -347,8 +364,7 @@ const ChatComponent = () => {
               <div ref={messagesEndRef} />
             </div>
           </div>
-
-          {/* Input Area */}
+          {/* Input */}
           <div className="bg-white border-t border-gray-200 p-4">
             <div className="max-w-4xl mx-auto">
               <div className="flex items-end space-x-3">
@@ -379,7 +395,7 @@ const ChatComponent = () => {
               <div className="mt-3 flex flex-wrap gap-2">
                 {[
                   "Plan a 7-day trip to Mumbai from Lucknow",
-                  "I want to explore mountains in India, So please plan trip for me from gorakhpur to any place, you choose any destination place, trip should for 1 week",
+                  "I want to explore mountains in India, So please plan trip for me from gorakhpur to any place, trip should for 1 week",
                   "from Gorakhpur, plan me a 4 day tour to historical and spiritual place in India",
                   "Romantic getaway for anniversary",
                 ].map((suggestion, index) => (
@@ -405,6 +421,7 @@ const ChatComponent = () => {
               )}
             </div>
           </div>
+          ̉̉
         </div>
       </div>
     </div>
