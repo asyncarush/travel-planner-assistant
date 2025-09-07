@@ -373,21 +373,14 @@ const ChatComponent = () => {
                     Enter ↵
                   </div>
                 </div>
-                <button
-                  onClick={handleSendMessage}
-                  disabled={!inputMessage.trim() || isStreaming}
-                  className="bg-blue-600 hover:bg-blue-700 disabled:bg-gray-300 text-white p-3 rounded-xl transition-all duration-200 transform hover:scale-105 disabled:scale-100 disabled:cursor-not-allowed flex-shrink-0 shadow-md hover:shadow-lg"
-                >
-                  <Send className="h-5 w-5" />
-                </button>
               </div>
 
               {/* Quick Suggestions */}
               <div className="mt-3 flex flex-wrap gap-2">
                 {[
-                  "Plan a 7-day trip to Japan",
-                  "Beach vacation under $2000",
-                  "European backpacking adventure",
+                  "Plan a 7-day trip to Mumbai from Lucknow",
+                  "I want to explore mountains in India, So please plan trip for me from gorakhpur to any place, you choose any destination place, trip should for 1 week",
+                  "from Gorakhpur, plan me a 4 day tour to historical and spiritual place in India",
                   "Romantic getaway for anniversary",
                 ].map((suggestion, index) => (
                   <button
